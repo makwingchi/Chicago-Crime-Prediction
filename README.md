@@ -1,3 +1,22 @@
+* [0. Setup](#link1)
+* [1. Data Wrangling](#link2)
+    + [1.1. Loading Data](#link3)
+    + [1.2. Calculating number of objects in grids](#link4)
+    + [1.3. Measuring average nearest distance](#link5)
+    + [1.4. Calculating distance to Loop](#link6)
+    + [1.5. Joining nearest crimes](#link7)
+    + [1.6. Creating the final net](#link8)
+* [2. Exploratory Analysis](#link9)
+* [3. Estimating models](#link10)
+    + [3.1. Estimating regression](#link11)
+    + [3.2. Standardized regression coefficients](#link12)
+    + [3.3. Predicted assault risk in Chicago](#link13)
+    + [3.4. Average predicted risk by police beat](#link14)
+* [4. Goodness of fit](#link15)
+    + [4.1. Performance across neighborhoods](#link16)
+    + [4.2. Kernel density vs. risk prediction](#link17)
+* [5. Interpretation](#link18)
+
 # 0. Setup
 This project is one of the assignments in CPLN 590 Spatial Analysis for Urban and Environmental Planning at University of Pennsylvania. I begin by loading the necessary packages and disabling scientific notation in R.
 
@@ -14,8 +33,6 @@ library(kableExtra)
 
 options(scipen=999)
 ```
-
-***
 
 # 1. Data Wrangling
 ## 1.1. Loading Data
@@ -541,8 +558,6 @@ head(final_net %>%
 </tbody>
 </table>
 
-***
-
 # 2. Exploratory Analysis
 Below shows a multi-scatterplot visualization that displays the relationship between the dependent variable and independent variables. Overall, the degree to which average number of crimes of nearest 8 grids is associated with the dependent variable is the highest.
 
@@ -564,8 +579,6 @@ ggplot(data = final_net_long, aes(x = Value, y = countAssaults)) +
 ```
 
 <img src="markdown_files/figure-html/unnamed-chunk-12-1.png" width="864" />
-
-***
 
 # 3. Estimating models
 ## 3.1. Estimating regression
@@ -926,8 +939,6 @@ Beat_w_Crimes[order(Beat_w_Crimes$avg_crimes, decreasing = TRUE), ] %>%
 </tbody>
 </table>
 
-***
-
 # 4. Goodness of fit
 ## 4.1. Performance across neighborhoods
 The Mean Absolute Error of our model is approximately 3.42, meaning the average difference between predicted and observed assaults is around 3.42.
@@ -1170,8 +1181,6 @@ ggplot(data=countComparisonsLong, aes(Category,Value)) +
 ```
 
 <img src="markdown_files/figure-html/unnamed-chunk-26-1.png" width="672" />
-
-***
 
 # 5. Interpretation
 Regarding accuracy, the model developed here does a very good job. First, the Mean Absolute Error equals 3.42, which is a huge improvement compared to the previous model built in class. In addition, the distribution of predicted assaults in space seems similar to the distribution of observed ones. Most importantly, the model targets better than the current resource allocation approach, namely Kernel Density Estimate. As we can see in the previous chapter, in the first four categories, the performance of Risk Terrain and Kernel Density Estimate are close to each other, while in the last and the most essential category (90% - 100%), our model performs much better. In this sense, this spatial crime predictive model can help police in Chicago better allocate their limited resources to certain targeted areas.
