@@ -1,3 +1,5 @@
+# Spatial Crime Modeling - the case of Chicago
+
 * [0. Setup](#link1)
 * [1. Data Wrangling](#link2)
     + [1.1. Loading Data](#link3)
